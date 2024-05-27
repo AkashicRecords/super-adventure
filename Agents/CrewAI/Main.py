@@ -1,9 +1,11 @@
-from langchain_community.llms import ollama
+from langchain_community.llms import Ollama
 from crewai import Agent, Task, Crew, Process
 
-modal = ollama(modal = "llama3")
+model = Ollama(model = "llama3")
 
-email ="nigerian prince sending some gold"
+email ="hey, your neighbor is John here, your house seems to be on fire. this is not a joke."
+is_verbose =False
+GROQ_API_KEY ="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"
 
 classifier = Agent(
       role ="email classifier",
@@ -11,7 +13,7 @@ classifier = Agent(
       backstory ="You are an AI assistant whose only job is to classify emails accurately and hoestly. Do not be afraid to give emails bad ratings if they are not important. Your job is to help the user manage their inbox.",
       verbose =True,
       allow_delegation = False,
-      llm = modal
+      llm = model
       
 )
 
@@ -21,19 +23,19 @@ responder = Agent(
       backstory ="You are an AI assistant whose only job is to write short responses to emails based in their importance. The importance will be provided to you by the 'classifier' agent.",
       verbose =True,
       allow_delegation = False,
-      llm = modal
+      llm = model
       
 )
 
 classifier_email = Task(
-    description = f"classify the following emai: '{email}'",
+    description = f"classify the following email: '{email}'",
     agent = classifier,
     expected_output = "One of these three options:'important', 'casual', or 'spam'",
 
 )
 
 respond_to_email = Task(
-    description = f"Respond to the emai: '{email}' based on the importance provided by the 'classifier' agent.",
+    description = f"Respond to the email: '{email}' based on the importance provided by the 'classifier' agent.",
     agent = responder,
     expected_output = "a very concise response to the email based on the importance provided by the 'classifier' agent.",
 
