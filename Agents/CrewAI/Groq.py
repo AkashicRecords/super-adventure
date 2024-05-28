@@ -3,7 +3,7 @@ import os
 
 os.environ["OpenAI_API_Base"] ='https://api.groq.com/openai/v1'
 os.environ["OpenAI_MODEL_NAME"] ='llama3-70b-8192'
-os.environ["OpenAI_API_KEY"] ='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'
+os.environ["OpenAI_API_KEY"] ='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'
 
 
 email ="hey, your neighbor is John here, your house seems to be on fire. this is not a joke."
