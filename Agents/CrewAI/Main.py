@@ -5,7 +5,7 @@ model = Ollama(model = "llama3")
 
 email ="hey, your neighbor is John here, your house seems to be on fire. this is not a joke."
 is_verbose =False
-GROQ_API_KEY ="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"
+GROQ_API_KEY ="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"
 
 classifier = Agent(
       role ="email classifier",
